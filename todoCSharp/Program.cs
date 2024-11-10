@@ -17,10 +17,16 @@ class Program
         item.SetState();
         item.SetState();
 
-        foreach (var i in todoList.GetList())
+        var iterator = todoList.CreateIterator();
+        while (iterator.HasNext())
         {
-            var display = String.Format("{0,3}: {1,20} {2,11} {3,20} {4,12} ", i.Id, i.Name, i.DueDate.ToString("dd/M/yyyy", CultureInfo.InvariantCulture), i.Description, i.State);
-            Console.WriteLine(display);
+            Console.WriteLine(iterator.Current());
+            iterator.Next();
+        }
+        // or ....
+        foreach (var todoItem in todoList.GetList())
+        {
+            Console.WriteLine(todoItem);
         }
     }
 }
