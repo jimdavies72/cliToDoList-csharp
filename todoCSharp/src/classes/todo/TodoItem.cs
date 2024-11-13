@@ -1,6 +1,7 @@
 using System.Globalization;
 using todoCSharp.src.interfaces;
 using todoCSharp.src.classes.states;
+using System.Text.Json.Serialization;
 
 namespace todoCSharp.src.classes
 {
@@ -8,10 +9,15 @@ namespace todoCSharp.src.classes
   {
     private static int instances = 0;
 
+    [JsonPropertyName("id")]
     public int Id { get; set; }
+    [JsonPropertyName("name")]
     public string Name { get; set; }
+    [JsonPropertyName("description")]
     public string Description { get; set; }
+    [JsonPropertyName("dueDate")]
     public DateTime DueDate { get; set; }
+    [JsonPropertyName("state")]
     public ITodoState State { get; set; }
 
     public TodoItem(string name,  DateTime dueDate, string description = "")

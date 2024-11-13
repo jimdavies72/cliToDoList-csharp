@@ -1,4 +1,4 @@
-namespace todoCSharp.src.classes.utils.Colour
+namespace todoCSharp.src.classes.utils
 {
   public static class Colour
   {

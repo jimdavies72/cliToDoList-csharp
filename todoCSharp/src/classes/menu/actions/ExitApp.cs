@@ -2,11 +2,11 @@ using todoCSharp.src.interfaces;
 
 namespace todoCSharp.src.classes.menu.actions
 {
-    public class ExitApp : IMenuAction
+  public class ExitApp : IAction
+  {
+    public void Execute()
     {
-        public void Action()
-        {
-            Console.WriteLine("Goodbye!");
-        }
+      Console.WriteLine("Goodbye!");
     }
+  }
 }

@@ -2,11 +2,19 @@ using todoCSharp.src.interfaces;
 
 namespace todoCSharp.src.classes.menu.actions
 {
-    public class RemoveTodoItem : IMenuAction
+  public class RemoveTodoItem : IAction
+  {
+    private TodoList todoList;
+    private int id;
+
+    public RemoveTodoItem(TodoList todoList, int id)
     {
-        public void Action()
-        {
-            Console.WriteLine("Remove todo item");
-        }
+      this.todoList = todoList;
+      this.id = id;
     }
+    public void Execute()
+    {
+      todoList.RemoveItem(id);
+    }
+  }
 }

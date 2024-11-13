@@ -1,4 +1,5 @@
 using todoCSharp.src.interfaces;
+using todoCSharp.src.classes.utils;
 
 namespace todoCSharp.src.classes
 {
@@ -6,6 +7,16 @@ namespace todoCSharp.src.classes
   {
     private List<TodoItem> todoList = new List<TodoItem>();
 
+    public bool LoadData(string filePath)
+    {
+      if (JSONData.DeseriaizeJson<TodoItem>(filePath, out List<TodoItem> list))
+      {
+        todoList = list;
+        return true;
+      }
+
+      return false;
+    }
 
     public void AddItem(TodoItem todoItem)
     {
@@ -17,6 +28,17 @@ namespace todoCSharp.src.classes
       var todoItem = todoList.Find(x => x.Id == id);
       if (todoItem == null) return;
       todoList.Remove(todoItem);
+    }
+
+    // TODO: There must be a better way of doing this...
+    public void UpdateItem(int id, string name, DateTime dueDate, string description)
+    {
+      var todoItem = todoList.Find(x => x.Id == id);
+      if (todoItem == null) return;
+
+      todoItem.Name = name;
+      todoItem.DueDate = dueDate;
+      todoItem.Description = description;
     }
 
     public List<TodoItem> GetList()

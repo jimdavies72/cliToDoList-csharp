@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "Add Todo Item"
+  },
+  {
+    "id": 2,
+    "name": "Delete Todo Item"
+  },
+  {
+    "id": 0,
+    "name": "Exit"
+  }
+]
