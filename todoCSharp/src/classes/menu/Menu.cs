@@ -17,6 +17,10 @@ namespace todoCSharp.src.classes.menu
       MenuName = menuName;
       this.action = action;  
     }
+    
+    public void ExecuteAction(){
+      action.Execute();
+    }
 
     public bool LoadData(string filePath)
     {
@@ -29,6 +33,15 @@ namespace todoCSharp.src.classes.menu
       return false;
     }
 
+    public bool GetMenuItem(int id, out MenuItem menuItem)
+    {
+      menuItem = menuItems.FirstOrDefault(x => x.Id == id) ?? new MenuItem(-1, "");
+
+      if (menuItem.Id == -1) return false;
+      return true;
+      
+    }
+
     public void AddItem(MenuItem menuItem)
     {
       menuItems.Add(menuItem);
@@ -39,9 +52,6 @@ namespace todoCSharp.src.classes.menu
       this.action = action;
     }
 
-    public void ExecuteAction(){
-      action.Execute();
-    }
 
     public void RemoveItem(int id)
     {

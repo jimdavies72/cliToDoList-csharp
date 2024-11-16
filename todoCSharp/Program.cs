@@ -1,4 +1,5 @@
 ﻿
+using todoCSharp.src.classes.utils;
 using todoCSharp.src.classes.menu;
 using todoCSharp.src.classes;
 using todoCSharp.src.classes.menu.actions;
@@ -11,31 +12,25 @@ class Program
   static void Main(string[] args)
   {
     // Code in here at the moment is merely for testing purposes
-
-    string filePath = @"C:\Users\jimda\dev\c-sharp\todo-csharp\todocsharp\data\"; 
-
-    string todoDataFileName = "todoData.json";
+    var config = Configuration.GetConfiguration();
 
     TodoList todoList = new TodoList();
-    if (!todoList.LoadData(filePath + todoDataFileName))
+    if (!todoList.LoadData(config["dataFilePath"] + config["todoDataFileName"]))
     {
       Console.WriteLine("Todo Data was not loaded");
     }
 
-    string menuDataFileName = "menuData.json";
     Menu menu = new Menu(1, "Main Menu", new ListTodoItems(todoList));
-    if (menu.LoadData(filePath + menuDataFileName))
+    if (menu.LoadData(config["dataFilePath"] + config["menuDataFileName"]))
     {
       menu.DisplayMenu();
       menu.ExecuteAction();
+      
+      Interaction interaction = new Interaction(menu);
+      interaction.Interact();
     } else
     {
       Console.WriteLine("Menu Data was not loaded");
     }
-
-    Interaction interaction = new Interaction();
-
-    interaction.Interact();
-
   }
 }
